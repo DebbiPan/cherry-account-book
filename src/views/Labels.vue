@@ -1,6 +1,8 @@
 <template>
-  <div>
-    labels
+  <div class="nav-wrapper">
+    <Layout>
+      <p>labels</p>
+    </Layout>
     <Nav/>
   </div>
 </template>
