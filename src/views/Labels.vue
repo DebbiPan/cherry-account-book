@@ -3,7 +3,6 @@
     <Layout>
       <p>labels</p>
     </Layout>
-    <Nav/>
   </div>
 </template>
 

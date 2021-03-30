@@ -1,19 +1,50 @@
 <template>
-<div class="nav">
-  <router-link to="/money">记账</router-link>
-  |
-  <router-link to="/labels">标签</router-link>
-  |
-  <router-link to="/statistics">统计</router-link>
-</div>
+<nav class="nav">
+  <router-link to="/money" class="item" active-class="selected">
+    <Icon name="money"/>
+    记账
+  </router-link>
+  <router-link to="/labels" class="item" active-class="selected">
+    <Icon name="label"/>
+    标签
+  </router-link>
+  <router-link to="/statistics" class="item" active-class="selected">
+    <Icon name="statistics"/>
+    统计
+  </router-link>
+</nav>
 </template>
 
-<script>
+<script lang="ts">
+
 export default {
 name: "Nav"
 }
 </script>
 
-<style scoped>
-  .nav{border:1px solid #7B6ACA;}
+<style scoped lang="scss">
+@import "~@/assets/style/helper.scss";
+nav{
+  @extend %outerShadow;
+  display:flex;
+  flex-direction: row;
+  font-size: 14px;
+  > .item{
+    padding:2px 0;
+    width:33.3333333%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+    .icon{
+      width:32px;
+      height:32px;
+    }
+  }
+  > .item.selected{
+    color:$color-highlight;
+    background: #F7F6FE;
+  }
+}
 </style>

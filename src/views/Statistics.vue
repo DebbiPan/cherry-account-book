@@ -3,7 +3,6 @@
     <Layout>
       <p>Statistics</p>
     </Layout>
-    <Nav/>
   </div>
 </template>
 
