@@ -1,55 +1,89 @@
 <template>
-<div>
-  <div class="tags">
-    <div class="new">
-      <button>新增标签</button>
+  <div>
+    <div class="tags">
+      <div class="new">
+        <button @click="creat">新增标签</button>
+      </div>
+      <ul class="current">
+        <li v-for="tag in dataSource" :key="tag"
+            :class="{selected:selectedTags.indexOf(tag) >= 0}"
+            @click="toggle(tag)">{{ tag }}
+        </li>
+      </ul>
     </div>
-    <ul class="current">
-      <li>衣</li>
-      <li>食</li>
-      <li>住</li>
-      <li>行</li>
-    </ul>
   </div>
-</div>
 </template>
 
-<script>
-export default {
-name: "tags"
+<script lang="ts">
+import Vue from 'vue';
+import {Component, Prop} from 'vue-property-decorator';
+
+@Component
+export default class Tages extends Vue {
+  @Prop() readonly dataSource: string[] | undefined;
+  selectedTags: string[] = [];
+
+  toggle(tag: string) {
+    const index = this.selectedTags.indexOf(tag);
+    if (index >= 0) {
+      this.selectedTags.splice(index, 1);
+    } else {
+      this.selectedTags.push(tag);
+    }
+  }
+
+  creat() {
+    const name = window.prompt('请输入标签名');
+    if (name === '') {
+      window.alert('标签名不能为空');
+    } else if (this.dataSource) {
+      this.$emit('update:dataSource', [...this.dataSource, name]);
+    }
+  }
 }
+
 </script>
 
 <style lang="scss" scoped>
-.tags{
-  font-size:14px;
-  padding:16px;
-  display:flex;
+.tags {
+  font-size: 14px;
+  padding: 16px;
+  display: flex;
   flex-direction: column-reverse;
-  flex-grow:1;
-  > .current{
-    display:flex;
+  flex-grow: 1;
+
+  > .current {
+    display: flex;
     flex-wrap: wrap;
-    > li{
-      background:#9680FF;
-      $h:24px;
-      height:$h;
-      line-height:$h;
+
+    > li {
+      $b: #9680FF;
+      background: $b;
+      $h: 24px;
+      height: $h;
+      line-height: $h;
       border-radius: $h/2;
-      padding:0 16px;
-      margin-right:12px;
-      margin-top:4px;
+      padding: 0 16px;
+      margin-right: 12px;
+      margin-top: 4px;
+      color: #fff;
+
+      &.selected {
+        background: darken($b, 10%);
+      }
     }
   }
-  > .new{
-    padding-top:16px;
-    button{
-      background:#EAE6FF;
-      border:none;
+
+  > .new {
+    padding-top: 16px;
+
+    button {
+      background: #EAE6FF;
+      border: none;
       //border-radius: 5px;
-      color:#999;
-      border-bottom:1px solid;
-      padding:0 4px;
+      color: #999;
+      border-bottom: 1px solid;
+      padding: 0 4px;
     }
   }
 }
