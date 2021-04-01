@@ -22,7 +22,7 @@ export default class Types extends Vue {
     if (type !== '+' && type !== '-') {
       throw new Error('type is unknow');
     }
-    this.$emit('update:value',type)
+    this.$emit('update:value', type);
   }
 
 }
