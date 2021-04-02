@@ -10,7 +10,7 @@
 body{
   line-height:1.5;
   font-family: $font-hei;
-
+  background:#FEFEFF;
   #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
