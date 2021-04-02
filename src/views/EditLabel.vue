@@ -6,7 +6,7 @@
       <span class="right-icon"></span>
     </div>
     <div class="form-wrapper">
-      <FormItem field-name="标签名" placeholder="请输入标签名"/>
+      <FormItem :value="tag.name" field-name="标签名" placeholder="请输入标签名"/>
     </div>
     <div class="button-wrapper">
       <Button>删除标签</Button>
@@ -26,13 +26,15 @@ import Button from '@/components/Button.vue';
   components: {FormItem, Button}
 })
 export default class EditLable extends Vue {
+  tag?: { id: string, name: string } = undefined;
+
   created() {
     const id = this.$route.params.id;
     tagListModel.fetch();
     const tags = tagListModel.data;
     const tag = tags.filter(t => t.id === id)[0];
     if (tag) {
-      console.log(tag);
+      this.tag = tag;
     } else {
       this.$router.replace('/4o4');
     }
@@ -42,6 +44,7 @@ export default class EditLable extends Vue {
 
 <style lang="scss" scoped>
 @import "~@/assets/style/helper.scss";
+
 .navBar {
   text-align: center;
   font-size: 16px;
@@ -50,21 +53,26 @@ export default class EditLable extends Vue {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   > .title {
     font-weight: bold;
     font-family: $font-hei;
   }
 
   > .left-icon {
-    width:24px;
-    height:24px;
+    width: 24px;
+    height: 24px;
   }
-  > .right-icon{
-    width:24px;
-    height:24px;
+
+  > .right-icon {
+    width: 24px;
+    height: 24px;
   }
 }
-.button-wrapper{
+
+
+.button-wrapper {
   text-align: center;
+
 }
 </style>
