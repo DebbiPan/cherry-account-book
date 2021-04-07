@@ -2,7 +2,7 @@
   <div>
     <div class="tags">
       <div class="new">
-        <button @click="creat">新增标签</button>
+        <button @click="create">新建标签</button>
       </div>
       <ul class="current">
         <li v-for="tag in dataSource" :key="tag.id"
@@ -33,7 +33,7 @@ export default class Tages extends Vue {
     this.$emit('update:value', this.selectedTags);
   }
 
-  creat() {
+  create() {
     const name = window.prompt('请输入标签名');
     if (name === '') {
       window.alert('标签名不能为空');
