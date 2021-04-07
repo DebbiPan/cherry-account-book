@@ -22,12 +22,12 @@ import {Component} from 'vue-property-decorator';
 import tagListModel from '@/models/tagListModel';
 import Button from '@/components/Button.vue';
 
-tagListModel.fetch();
+
 @Component({
-  components:{Button}
+  components: {Button}
 })
 export default class Labels extends Vue {
-  tags = tagListModel.data;
+  tags = window.tagList;
 
 
   creatTag() {
@@ -66,7 +66,8 @@ export default class Labels extends Vue {
     }
   }
 }
-  .creatTag-wrapper {
-    text-align: center;
-  }
+
+.creatTag-wrapper {
+  text-align: center;
+}
 </style>
