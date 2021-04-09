@@ -3,7 +3,7 @@
     <div class="navBar">
       <Icon class="left-icon" name="left" @click="goBack"/>
       <span class="title">编辑标签</span>
-      <span class="right-icon" />
+      <span class="right-icon"/>
     </div>
     <div class="form-wrapper">
       <FormItem :value="tag.name"
@@ -28,11 +28,12 @@ import Button from '@/components/Button.vue';
   components: {FormItem, Button}
 })
 export default class EditLable extends Vue {
-  tag?: Tag = undefined;
-
+  get tag() {
+    return this.$store.state.currentTag;
+  }
   created() {
-    //todo
-    // this.tag = store.findTag(this.$route.params.id);
+    const id = this.$route.params.id;
+    this.$store.commit('setCurrentTag',id)
     if (!this.tag) {
       this.$router.replace('/4o4');
     }

@@ -18,15 +18,11 @@
 import {Component, Mixins} from 'vue-property-decorator';
 import TagHelper from '@/Mixins/tagHelper';
 
-@Component({
-  computed: {
-    tagList() {
-      return this.$store.state.tagList;
-    }
-  }
-})
+@Component
 export default class Tages extends Mixins(TagHelper) {
-
+  get tagList() {
+    return this.$store.state.tagList;
+  }
   selectedTags: string[] = [];
 
   created(){
