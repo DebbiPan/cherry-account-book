@@ -23,11 +23,13 @@ export default class Tages extends Mixins(TagHelper) {
   get tagList() {
     return this.$store.state.tagList;
   }
+
   selectedTags: string[] = [];
 
-  created(){
-    this.$store.commit('fetchTags')
+  created() {
+    this.$store.commit('fetchTags');
   }
+
   toggle(tag: string) {
     const index = this.selectedTags.indexOf(tag);
     if (index >= 0) {
