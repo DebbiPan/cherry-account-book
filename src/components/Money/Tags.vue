@@ -2,7 +2,7 @@
   <div>
     <div class="tags">
       <div class="new">
-        <button @click="create">新建标签</button>
+        <button @click="createTag">新建标签</button>
       </div>
       <ul class="current">
         <li v-for="tag in tagList" :key="tag.id"
@@ -15,22 +15,23 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import {Component} from 'vue-property-decorator';
+import {Component, Mixins} from 'vue-property-decorator';
+import TagHelper from '@/Mixins/tagHelper';
 
 @Component({
   computed: {
     tagList() {
-      //todo
-      // return this.$store.fetchTag();
-      return [];
+      return this.$store.state.tagList;
     }
   }
 })
-export default class Tages extends Vue {
+export default class Tages extends Mixins(TagHelper) {
 
   selectedTags: string[] = [];
 
+  created(){
+    this.$store.commit('fetchTags')
+  }
   toggle(tag: string) {
     const index = this.selectedTags.indexOf(tag);
     if (index >= 0) {
@@ -39,13 +40,6 @@ export default class Tages extends Vue {
       this.selectedTags.push(tag);
     }
     this.$emit('update:value', this.selectedTags);
-  }
-
-  create() {
-    const name = window.prompt('请输入标签名');
-    if (!name) {return window.alert('标签名不能为空');}
-    // store.createTag(name);
-    //todo
   }
 }
 

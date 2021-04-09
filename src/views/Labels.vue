@@ -10,7 +10,7 @@
         </router-link>
       </div>
       <div class="creatTag-wrapper">
-        <Button class="creatTag" @click="creatTag">新建标签</Button>
+        <Button class="creatTag" @click="createTag">新建标签</Button>
       </div>
     </Layout>
   </div>
@@ -20,22 +20,22 @@
 import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 import Button from '@/components/Button.vue';
-
+import TagHelper from '@/Mixins/tagHelper';
+import {mixins} from 'vue-class-component';
 
 @Component({
-  components: {Button}
-})
-export default class Labels extends Vue {
-  tags = []//todo
-
-
-  creatTag() {
-    const name = window.prompt('请输入标签名');
-    if (name) {
-      //todo
-      // store.createTag(name)
+  components: {Button},
+  computed: {
+    tags() {
+      return this.$store.state.tagList;
     }
   }
+})
+export default class Labels extends mixins(TagHelper) {
+  beforeCreate() {
+    this.$store.commit('fetchTags');
+  }
+
 }
 </script>
 
