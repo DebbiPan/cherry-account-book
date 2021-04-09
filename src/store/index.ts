@@ -17,7 +17,7 @@ const store = new Vuex.Store({
     recordList: [] as RecordItem[],
     tagList: [] as Tag[],
     currentTag: undefined
-  },
+  } as RootState,
   mutations: {
     fetchRecords(state) {
       state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
