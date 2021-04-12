@@ -29,14 +29,15 @@ export default class Statistics extends Vue {
 ::v-deep .type-tabs-item {
   background: #EAE6FF;
   color: #6849CB;
-
   &.selected {
     background: #6849CB;
     color: #fff;
-
     &::after {
       display: none;
     }
   }
+}
+::v-deep .interval-tabs-item{
+  height:48px;
 }
 </style>
