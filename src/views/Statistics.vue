@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
-    <Tabs class-prefix="interval" :data-source="intervalList" :value.sync="interval"/>
+    <Tabs class-prefix="interval" :data-source="intervalList" :value.sync="interval" height="48px"/>
     <div>
 
     </div>
@@ -14,6 +14,7 @@ import intervalList from '@/constants/intervalList';
 import recordTypeList from '@/constants/recordTypeList';
 import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
+
 @Component({
   components: {Tabs}
 })
@@ -26,18 +27,24 @@ export default class Statistics extends Vue {
 </script>
 
 <style scoped lang="scss">
-::v-deep .type-tabs-item {
-  background: #EAE6FF;
-  color: #6849CB;
-  &.selected {
-    background: #6849CB;
-    color: #fff;
-    &::after {
-      display: none;
+::v-deep {
+  .type-tabs-item {
+    background: #EAE6FF;
+    color: #6849CB;
+
+    &.selected {
+      background: #6849CB;
+      color: #fff;
+
+      &::after {
+        display: none;
+      }
     }
   }
+
+  .interval-tabs-item {
+    //height: 48px;
+  }
 }
-::v-deep .interval-tabs-item{
-  height:48px;
-}
+
 </style>
